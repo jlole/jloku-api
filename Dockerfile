@@ -9,4 +9,6 @@ COPY . /var/api/app
 
 WORKDIR /var/api/app
 
+ENV SCRIPT_NAME=/api
+
 CMD ["gunicorn", "--bind", "0.0.0.0:5000", "--timeout", "600", "app:app"]
