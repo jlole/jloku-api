@@ -9,4 +9,4 @@ COPY . /var/api/app
 
 WORKDIR /var/api/app
 
-CMD ["gunicorn", "--bind", "0.0.0.0:5001", "--timeout", "600", "app:app"]
+CMD ["gunicorn", "--bind", "0.0.0.0", "--timeout", "600", "app:app"]
