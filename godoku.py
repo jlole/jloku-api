@@ -8,7 +8,6 @@ class GoDoku:
 
   def get_daily_board(self):
     v = self.daily
-    # .tolist()
     return json.dumps(v)
 
   def generate_puzzle(self, difficulty):
