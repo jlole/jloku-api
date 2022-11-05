@@ -1,7 +1,9 @@
+import os
 from pymongo import MongoClient
-
 class Database():
-  client = MongoClient("mongodb+srv://jloku:l9RVIAS4hw0d6vnx@cluster0.dgbj2.mongodb.net/?retryWrites=true&w=majority")
+  MONGO_USERNAME = os.getenv('MONGO_USERNAME')
+  MONGO_PASSWORD = os.getenv('MONGO_PASSWORD')
+  client = MongoClient("mongodb+srv://" + MONGO_USERNAME + ":" + MONGO_PASSWORD + "@cluster0.dgbj2.mongodb.net/?retryWrites=true&w=majority")
   db = client['jloku']
 
   def get_daily(self):
