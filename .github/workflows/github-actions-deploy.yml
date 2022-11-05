@@ -15,6 +15,10 @@ jobs:
         DOCKER_BUILDKIT: 1 
         MONGO_USERNAME: ${{ secrets.MONGO_USERNAME }}
         MONGO_PASSWORD: ${{ secrets.MONGO_PASSWORD }}
+      with:
+        secrets: |
+          "MONGO_USERNAME=${{ secrets.MONGO_USERNAME }}"
+          "MONGO_PASSWORD=${{ secrets.MONGO_PASSWORD }}"
       run: docker build -t jloku/jloku-api .
     - name: Remove Previous Docker
       run: docker rm -f jloku-api || true
