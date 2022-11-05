@@ -10,12 +10,14 @@ def api_home():
 
 @app.route("/generate_board")
 def generate_board():
-    g = GoDoku()
-    return g.generate_puzzle(1)
+    difficulty = request.args.get('difficulty')
+    if difficulty == None or not difficulty.isnumeric() or int(difficulty) not in range(4):
+        difficulty = 1
+    print(difficulty)
+    return GoDoku().generate_puzzle(int(difficulty))
 
 @app.route("/get_daily_board")
 def get_daily_board():
-    g = GoDoku()
     return Database().get_daily()
 
 

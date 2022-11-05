@@ -134,13 +134,19 @@ class Board:
 
 	def generateQuestionBoard(self, fullBoard, difficulty): # generates a question board with a certain amount of numbers removed depending on the chosen difficulty
 			self.board = copy.deepcopy(fullBoard)
-			
+
+			prevent_loop = 0
+			prevent_loop_limit = 4
+
 			if difficulty == 0:
 				_squares_to_remove = 15
 			elif difficulty == 1:
-				_squares_to_remove = 20
+				_squares_to_remove = 18
 			elif difficulty == 2:
-				_squares_to_remove = 25
+				_squares_to_remove = 20
+			elif difficulty == 3:
+				_squares_to_remove = 21
+				prevent_loop_limit = 100
 			else:
 				return
 
@@ -180,6 +186,8 @@ class Board:
 
 					if len(self.findNumberOfSolutions()) != 1:
 						self.board[_row][_col] = n
+						prevent_loop += 1
+						if prevent_loop > prevent_loop_limit: break
 						continue
 
 					_counter += 1
