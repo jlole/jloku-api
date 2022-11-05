@@ -15,4 +15,4 @@ ARG MONGO_PASSWORD
 ENV MONGO_USERNAME=$MONGO_USERNAME
 ENV MONGO_PASSWORD=$MONGO_PASSWORD
 
-CMD ["gunicorn", "--env", "SCRIPT_NAME=/api", "--bind", "0.0.0.0:5000", "--timeout", "600", "app:app"]
+CMD ["gunicorn", "--env", "SCRIPT_NAME=/api", "--bind", "0.0.0.0:5000", "--timeout", "60", "app:app"]
