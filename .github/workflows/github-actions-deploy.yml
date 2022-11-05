@@ -11,15 +11,9 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Build Docker
-      env:
-        DOCKER_BUILDKIT: 1 
-        MONGO_USERNAME: ${{ secrets.MONGO_USERNAME }}
-        MONGO_PASSWORD: ${{ secrets.MONGO_PASSWORD }}
-      with:
-        secrets: |
-          "MONGO_USERNAME=${{ secrets.MONGO_USERNAME }}"
-          "MONGO_PASSWORD=${{ secrets.MONGO_PASSWORD }}"
-      run: docker build -t jloku/jloku-api .
+      # env:
+        # DOCKER_BUILDKIT: 1 
+      run: docker build --build-arg MONGO_USERNAME=${{ secrets.MONGO_USERNAME }} --build-arg MONGO_PASSWORD=${{ secrets.MONGO_PASSWORD }} -t jloku/jloku-api .
     - name: Remove Previous Docker
       run: docker rm -f jloku-api || true
     - name: Run Docker
