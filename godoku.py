@@ -7,9 +7,10 @@ class GoDoku:
   sudoku = Board()
 
   def get_daily_board(self):
-    v = self.daily.tolist()
+    v = self.daily
+    # .tolist()
     return json.dumps(v)
 
-  def generate_puzzle(self):
-    self.sudoku.generateQuestionBoardCode(1)
+  def generate_puzzle(self, difficulty):
+    self.sudoku.generateQuestionBoardCode(difficulty)
     return json.dumps(self.sudoku.board)
