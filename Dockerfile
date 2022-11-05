@@ -9,11 +9,11 @@ COPY . /var/api/app
 
 WORKDIR /var/api/app
 
-ARG MONGO_USERNAME
-ARG MONGO_PASSWORD
 
-ENV MONGO_USERNAME $MONGO_USERNAME
-ENV MONGO_PASSWORD $MONGO_PASSWORD
+RUN --mount=type=secret,id=MONGO_USERNAME \
+  --mount=type=secret,id=MONGO_PASSWORD \
+   export MONGO_USERNAME=$(cat /run/secrets/MONGO_USERNAME) && \
+   export MONGO_PASSWORD=$(cat /run/secrets/MONGO_PASSWORD)
 
 
 CMD ["gunicorn", "--env", "SCRIPT_NAME=/api", "--bind", "0.0.0.0:5000", "--timeout", "600", "app:app"]
