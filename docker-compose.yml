@@ -5,7 +5,6 @@ services:
     image: localhost:5002/jloku-api
     ports:
       - "5001:5000"
-    command: gunicorn --workers 13 --threads 4 --env SCRIPT_NAME=/api --bind 0.0.0.0:5000 --timeout 60 app:app --log-level debug
     deploy:
       replicas: 2
       update_config:
