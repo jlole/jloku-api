@@ -10,4 +10,4 @@ class Database():
     collection = self.db["daily_godokus"]
     item_details = collection.find()
     for item in item_details:
-      return item['puzzle']
+      return {"puzzle":item['puzzle'],"solution":item['solution']}

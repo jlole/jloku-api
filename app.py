@@ -1,21 +1,20 @@
 from flask import Flask
 from flask import request
-from godoku import GoDoku
+from sudoku import Board
 from database import Database
 
 app = Flask(__name__)
+
 
 @app.route("/")
 def api_home():
     return "Welcome to the jloku api!"
 
+
 @app.route("/generate_board")
 def generate_board():
-    difficulty = request.args.get('difficulty')
-    if difficulty == None or not difficulty.isnumeric() or int(difficulty) not in range(4):
-        difficulty = 1
-    print(difficulty)
-    return GoDoku().generate_puzzle(int(difficulty))
+    return Board().generate_puzzle(request.args.get('difficulty'))
+
 
 @app.route("/get_daily_board")
 def get_daily_board():

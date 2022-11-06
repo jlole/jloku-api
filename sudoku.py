@@ -1,6 +1,7 @@
 import copy
 import random
 import numpy as np
+import json
 
 
 class Board:
@@ -61,7 +62,14 @@ class Board:
 		else:
 			self.code = None
 
-	
+
+	def generate_puzzle(self, difficulty):
+		if difficulty == None or not difficulty.isnumeric() or int(difficulty) not in range(4):
+				difficulty = 1
+		x, y = self.generateQuestionBoardCode(int(difficulty))
+		return json.dumps({"puzzle": x, "solution": y})
+
+
 	def boardToCode(self, input_board=None): # turn a pre-existing board into a code
 		if input_board:
 			_code = ''.join([str(i) for j in input_board for i in j])
@@ -274,16 +282,3 @@ class Board:
 		]
 
 		return self.board
-
-
-
-
-
-if __name__ == '__main__':
-	board = Board()
-
-	question_board_code = board.generateQuestionBoardCode(1) # generates a medium level sudoku
-	print(question_board_code[0])
-
-	code = '300105000060200000008090060050000800800007040071009035000900084704006000902048300'
-	solved_board_code = Board(code).solveForCode() # solves a hard level sudoku 
