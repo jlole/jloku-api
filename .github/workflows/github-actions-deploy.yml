@@ -11,8 +11,8 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Build Docker
-      run: docker build --build-arg MONGO_USERNAME=${{ secrets.MONGO_USERNAME }} --build-arg MONGO_PASSWORD=${{ secrets.MONGO_PASSWORD }} -t localhost:5002/jloku-api .
-    - name: Push Image to Registry
-      run: docker push localhost:5002/jloku-api
-    - name: Deploy
-      run: docker stack deploy --prune -c docker-compose.yml jloku-api-stack
+      run: docker build --build-arg MONGO_USERNAME=${{ secrets.MONGO_USERNAME }} --build-arg MONGO_PASSWORD=${{ secrets.MONGO_PASSWORD }} -t jloku/jloku-api .
+    - name: Remove Previous Docker
+      run: docker rm -f jloku-api || true
+    - name: Run Docker
+      run: docker run --name jloku-api -dp 5000:5000 jloku/jloku-api
