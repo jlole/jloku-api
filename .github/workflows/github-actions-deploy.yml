@@ -10,9 +10,11 @@ jobs:
     runs-on: self-hosted
     steps:
     - uses: actions/checkout@v2
-    - name: Build Docker
+    - name: Build docker image
       run: docker build --build-arg MONGO_USERNAME=${{ secrets.MONGO_USERNAME }} --build-arg MONGO_PASSWORD=${{ secrets.MONGO_PASSWORD }} -t localhost:5002/jloku-api .
-    - name: Push Image to Registry
+    - name: Push image to registry
       run: docker push localhost:5002/jloku-api
-    - name: Deploy
+    - name: Deploy docker stack
       run: docker stack deploy --prune -c docker-compose.yml jloku-api-stack
+    - name: Prune docker
+      run: docker container prune -f && docker image prune -f

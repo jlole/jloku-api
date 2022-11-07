@@ -8,7 +8,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def api_home():
-    return "Welcome to the jloku api!"
+    return "Welcome to the jloku api."
 
 
 @app.route("/generate_board")

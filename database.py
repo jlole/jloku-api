@@ -1,5 +1,7 @@
 import os
 from pymongo import MongoClient
+import pymongo
+
 class Database():
   MONGO_USERNAME = os.getenv('MONGO_USERNAME')
   MONGO_PASSWORD = os.getenv('MONGO_PASSWORD')
@@ -8,6 +10,6 @@ class Database():
 
   def get_daily(self):
     collection = self.db["daily_godokus"]
-    item_details = collection.find()
-    for item in item_details:
-      return {"puzzle":item['puzzle'],"solution":item['solution']}
+    item_details = collection.find().sort('_id', pymongo.DESCENDING)
+    daily = item_details.next()
+    return {"puzzle":daily['puzzle'],"solution":daily['solution']}
