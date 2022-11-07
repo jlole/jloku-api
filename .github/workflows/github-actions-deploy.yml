@@ -12,6 +12,8 @@ jobs:
     - uses: actions/checkout@v2
     - name: Build docker image
       run: docker build --build-arg MONGO_USERNAME=${{ secrets.MONGO_USERNAME }} --build-arg MONGO_PASSWORD=${{ secrets.MONGO_PASSWORD }} -t localhost:5002/jloku-api .
+    - name: Start docker registry
+      run: docker start registry
     - name: Push image to registry
       run: docker push localhost:5002/jloku-api
     - name: Deploy docker stack
