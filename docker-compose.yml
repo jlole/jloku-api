@@ -22,6 +22,6 @@ services:
         window: 120s
     healthcheck:
       test: curl --fail http://localhost:5000/api/ || exit 1
-      interval: 10s
+      interval: 1m
       timeout: 10s
-      retries: 10
+      retries: 5
