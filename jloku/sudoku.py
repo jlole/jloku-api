@@ -5,50 +5,7 @@ import json
 
 
 class Board:
-	"""
-	__init__ [code (optional): string]:
-		Initilise the board object
-
-	boardToCode [input_board (optional): list]:
-		Convert a board represented by a list into a string representation
-
-	findSpaces []:
-		Finds the first empty space, represented by a 0, on the current board
-
-	checkSpace [num: integer, space: tuple]:
-		Returns a bool, depending if the number passed in can exist in a space on the current board, provided by the tuple argument
-
-	solve []:
-		Solves the current board using backtracking
-
-	solveForCode []:
-		Calls the solve method and returns the solved board in a string code format
-
-	generateQuestionBoardCode [difficulty: integer]:
-		Calls the generateQuestionBoard method and returns a question board and its solution in code format
-
-	generateQuestionBoard [fullBoard: list, difficulty: integer]:
-		Returns a randomly generated question board and the solution to the same board, the difficulty represents the number of number squares
-		removed from the board
-
-	__generateRandomCompleteBoard []:
-		Returns a full randomly generated board
-
-	__generateCont []:
-		Uses recursion to finish generating a full board, whilst also making sure the board is solvable by calling the solve method
-
-	findNumberOfSolutions []:
-		Finds the number of solutions to the current board and returns a list of all the solutions in code format
-
-	__findSpacesToFindNumberOfSolutions [board: list, h: integer]:
-		Finds the first empty space in the board given as the argument, used within the findNumberOfSolutions method
-
-	__solveToFindNumberOfSolutions [row: integer, col: interger]:
-		Solves the current board using recursion by starting at the position determined by the row and col, used within the findNumberOfSolutions method
-
-	__resetBoard []:
-		Resets the current board to an empty state
-	"""
+	
 	def __init__(self, code=None):
 		self.__resetBoard()
 
