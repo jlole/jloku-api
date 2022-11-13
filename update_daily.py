@@ -1,9 +1,12 @@
 from jloku.sudoku import Board
 from jloku.database import Database
-from datetime import date
+import datetime
 import json
+import pytz
 
-the_date = date.today()
+timezone = pytz.timezone("Europe/Amsterdam")
+the_date = datetime.datetime.now()
+the_date = timezone.localize(the_date)
 the_date = the_date.strftime("%d-%m-%Y")
 
 daily_puzzle = json.loads(Board().generate_puzzle('2'))
