@@ -12,7 +12,7 @@ class Database():
     collection = self.db["daily_godokus"]
     item_details = collection.find().sort('_id', pymongo.DESCENDING)
     daily = item_details.next()
-    return {"puzzle":daily['puzzle'],"solution":daily['solution']}
+    return {'date': daily['date'], 'puzzle': daily['puzzle'], 'solution': daily['solution']}
 
   def update_daily(self, daily_puzzle):
     collection = self.db["daily_godokus"]
