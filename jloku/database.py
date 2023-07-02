@@ -5,7 +5,12 @@ import pymongo
 class Database():
   MONGO_USERNAME = os.getenv('MONGO_USERNAME')
   MONGO_PASSWORD = os.getenv('MONGO_PASSWORD')
-  client = MongoClient("mongodb+srv://" + MONGO_USERNAME + ":" + MONGO_PASSWORD + "@cluster0.dgbj2.mongodb.net/?retryWrites=true&w=majority")
+
+  if MONGO_USERNAME and MONGO_PASSWORD:
+    client = MongoClient("mongodb+srv://" + MONGO_USERNAME + ":" + MONGO_PASSWORD + "@cluster0.dgbj2.mongodb.net/?retryWrites=true&w=majority")
+  else:
+    client = MongoClient("mongodb://root:rootpassword@jloku-mongo:27017")
+    
   db = client['jloku']
 
   def get_daily(self):
